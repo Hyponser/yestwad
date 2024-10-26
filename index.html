@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karv Hub</title>
     <style>
-       
+        /* Global Styles */
         * {
             margin: 0;
             padding: 0;
@@ -82,6 +82,15 @@
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
+        .feature-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+        }
+
         .feature-card.show {
             opacity: 1;
             transform: translateY(0);
@@ -91,6 +100,59 @@
             padding: 3rem 1rem;
             background-color: #111;
             text-align: center;
+        }
+
+        .faq h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #222;
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.2s;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: #333;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            background: #333;
+            border-radius: 5px;
+            padding: 0 1rem;
+            margin-top: 0.5rem;
+            transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            opacity: 1;
+            padding: 1rem;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
         }
 
         .bottom-banner {
@@ -131,6 +193,10 @@
             color: #ccc;
             background-color: #111;
             border-top: 1px solid #333;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
         }
     </style>
 </head>
@@ -207,7 +273,6 @@
     </footer>
 
     <script>
-        // Insert JavaScript from script.js here
         document.addEventListener('DOMContentLoaded', function () {
             const featureCards = document.querySelectorAll('.feature-card');
             
@@ -230,11 +295,10 @@
                 
                 question.addEventListener('click', () => {
                     item.classList.toggle('active');
-                    const toggle = question.querySelector('.faq-toggle');
-                    toggle.textContent = item.classList.contains('active') ? 'x' : '+';
                 });
             });
         });
     </script>
+
 </body>
 </html>
