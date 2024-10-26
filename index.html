@@ -4,7 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karv Hub</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            background: radial-gradient(circle, rgba(0,0,0,1) 50%, rgba(45,45,45,1) 100%);
+        }
+
+        .hero-content h2 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .download-btn {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #000;
+            background-color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .features {
+            padding: 3rem 1rem;
+            text-align: center;
+            background-color: #111;
+        }
+
+        .features h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: #222;
+            padding: 1.5rem;
+            border-radius: 10px;
+            width: 250px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .feature-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .faq {
+            padding: 3rem 1rem;
+            background-color: #111;
+            text-align: center;
+        }
+
+        .bottom-banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            margin: 2rem auto 0;
+            max-width: 800px;
+            background: #1c1c1c;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .download-banner-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ffffff;
+            background: linear-gradient(45deg, #ff6b6b, #ff4757, #ff7f50);
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background 0.5s ease, transform 0.2s ease;
+        }
+
+        .download-banner-button:hover {
+            background: linear-gradient(45deg, #ff7f50, #ff4757, #ff6b6b);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ccc;
+            background-color: #111;
+            border-top: 1px solid #333;
+        }
+    </style>
 </head>
 <body>
     
@@ -78,6 +206,35 @@
         <p>Karv Hub is not authorized, endorsed, associated with, or sponsored by Roblox. Karv Hub is a Discord Community. All Roblox trademarks are the property of Roblox Corporation.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Insert JavaScript from script.js here
+        document.addEventListener('DOMContentLoaded', function () {
+            const featureCards = document.querySelectorAll('.feature-card');
+            
+            const revealCards = () => {
+                featureCards.forEach(card => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    if (cardTop < windowHeight - 100) {
+                        card.classList.add('show');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', revealCards);
+
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                    const toggle = question.querySelector('.faq-toggle');
+                    toggle.textContent = item.classList.contains('active') ? 'x' : '+';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
